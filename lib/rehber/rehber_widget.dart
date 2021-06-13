@@ -22,7 +22,7 @@ class _RehberWidgetState extends State<RehberWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: textController.text);
+    textController = TextEditingController();
   }
 
   @override
@@ -87,7 +87,13 @@ class _RehberWidgetState extends State<RehberWidget> {
                                   }
                                   final sonucAydinKadinDogumRecord =
                                       sonucAydinKadinDogumRecordList.first;
-                                  return SonucWidget();
+                                  return InkWell(
+                                    onTap: () async {
+                                      await launchURL(
+                                          sonucAydinKadinDogumRecord.isim);
+                                    },
+                                    child: SonucWidget(),
+                                  );
                                 },
                               ),
                               Expanded(
