@@ -1,4 +1,5 @@
 import '../backend/backend.dart';
+import '../components/sonuc_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../rehber_detail/rehber_detail_widget.dart';
@@ -21,7 +22,7 @@ class _RehberWidgetState extends State<RehberWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController = TextEditingController(text: textController.text);
   }
 
   @override
@@ -63,18 +64,31 @@ class _RehberWidgetState extends State<RehberWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await launchURL(textController.text);
-                                  },
-                                  child: Icon(
-                                    Icons.search_rounded,
-                                    color: Color(0xFF95A1AC),
-                                    size: 24,
-                                  ),
+                              StreamBuilder<List<AydinKadinDogumRecord>>(
+                                stream: queryAydinKadinDogumRecord(
+                                  singleRecord: true,
                                 ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  }
+                                  List<AydinKadinDogumRecord>
+                                      sonucAydinKadinDogumRecordList =
+                                      snapshot.data;
+                                  // Customize what your widget looks like with no query results.
+                                  if (snapshot.data.isEmpty) {
+                                    // return Container();
+                                    // For now, we'll just include some dummy data.
+                                    sonucAydinKadinDogumRecordList =
+                                        createDummyAydinKadinDogumRecord(
+                                            count: 1);
+                                  }
+                                  final sonucAydinKadinDogumRecord =
+                                      sonucAydinKadinDogumRecordList.first;
+                                  return SonucWidget();
+                                },
                               ),
                               Expanded(
                                 child:
@@ -111,7 +125,9 @@ class _RehberWidgetState extends State<RehberWidget> {
                                         controller: textController,
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: textController.text,
+                                          labelText:
+                                              textFieldAydinKadinDogumRecord
+                                                  .isim,
                                           labelStyle: FlutterFlowTheme.bodyText1
                                               .override(
                                             fontFamily: 'Poppins',
