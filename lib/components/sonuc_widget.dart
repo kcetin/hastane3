@@ -16,7 +16,7 @@ class _SonucWidgetState extends State<SonucWidget> {
       padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
       child: InkWell(
         onTap: () async {
-          await launchURL(textController.text);
+          await launchURL('\$.id');
         },
         child: Icon(
           Icons.search_rounded,
