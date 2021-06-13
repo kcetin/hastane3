@@ -63,86 +63,91 @@ class _RehberWidgetState extends State<RehberWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              StreamBuilder<List<AydinKadinDogumRecord>>(
-                                stream: queryAydinKadinDogumRecord(
-                                  queryBuilder: (aydinKadinDogumRecord) =>
-                                      aydinKadinDogumRecord.where('isim',
-                                          isEqualTo: textController.text),
-                                  singleRecord: true,
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await launchURL(textController.text);
+                                  },
+                                  child: Icon(
+                                    Icons.search_rounded,
+                                    color: Color(0xFF95A1AC),
+                                    size: 24,
+                                  ),
                                 ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                  List<AydinKadinDogumRecord>
-                                      iconAydinKadinDogumRecordList =
-                                      snapshot.data;
-                                  // Customize what your widget looks like with no query results.
-                                  if (snapshot.data.isEmpty) {
-                                    // return Container();
-                                    // For now, we'll just include some dummy data.
-                                    iconAydinKadinDogumRecordList =
-                                        createDummyAydinKadinDogumRecord(
-                                            count: 1);
-                                  }
-                                  final iconAydinKadinDogumRecord =
-                                      iconAydinKadinDogumRecordList.first;
-                                  return Padding(
-                                    padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await launchURL(textController.text);
-                                      },
-                                      child: Icon(
-                                        Icons.search_rounded,
-                                        color: Color(0xFF95A1AC),
-                                        size: 24,
-                                      ),
-                                    ),
-                                  );
-                                },
                               ),
                               Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
-                                  child: TextFormField(
-                                    controller: textController,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      labelText: 'Search events here...',
-                                      labelStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Color(0xFF95A1AC),
-                                      ),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x00000000),
-                                          width: 1,
-                                        ),
-                                        borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(4.0),
-                                          topRight: Radius.circular(4.0),
-                                        ),
-                                      ),
-                                    ),
-                                    style: FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Poppins',
-                                      color: Color(0xFF95A1AC),
-                                    ),
+                                child:
+                                    StreamBuilder<List<AydinKadinDogumRecord>>(
+                                  stream: queryAydinKadinDogumRecord(
+                                    queryBuilder: (aydinKadinDogumRecord) =>
+                                        aydinKadinDogumRecord.where('isim',
+                                            isEqualTo: textController.text),
+                                    singleRecord: true,
                                   ),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                          child: CircularProgressIndicator());
+                                    }
+                                    List<AydinKadinDogumRecord>
+                                        textFieldAydinKadinDogumRecordList =
+                                        snapshot.data;
+                                    // Customize what your widget looks like with no query results.
+                                    if (snapshot.data.isEmpty) {
+                                      // return Container();
+                                      // For now, we'll just include some dummy data.
+                                      textFieldAydinKadinDogumRecordList =
+                                          createDummyAydinKadinDogumRecord(
+                                              count: 1);
+                                    }
+                                    final textFieldAydinKadinDogumRecord =
+                                        textFieldAydinKadinDogumRecordList
+                                            .first;
+                                    return Padding(
+                                      padding: EdgeInsets.fromLTRB(4, 0, 0, 0),
+                                      child: TextFormField(
+                                        controller: textController,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          labelText: textController.text,
+                                          labelStyle: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF95A1AC),
+                                          ),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 1,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(4.0),
+                                              topRight: Radius.circular(4.0),
+                                            ),
+                                          ),
+                                        ),
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF95A1AC),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                               Expanded(
