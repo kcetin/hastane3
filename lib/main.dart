@@ -10,6 +10,8 @@ import 'icapci/icapci_widget.dart';
 import 'yonetim/yonetim_widget.dart';
 import 'acilis/acilis_widget.dart';
 import 'nbtc/nbtc_widget.dart';
+import 'rehber_copy/rehber_copy_widget.dart';
+import 'anasayfa_copy/anasayfa_copy_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -80,6 +82,8 @@ class _NavBarPageState extends State<NavBarPage> {
       'yonetim': YonetimWidget(),
       'acilis': AcilisWidget(),
       'nbtc': NbtcWidget(),
+      'rehberCopy': RehberCopyWidget(),
+      'AnasayfaCopy': AnasayfaCopyWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -134,6 +138,24 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24,
             ),
             label: 'nbtc',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.userFriends,
+              size: 24,
+            ),
+            label: 'Rehber',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.home,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.home,
+              size: 28,
+            ),
+            label: 'Anasayfa',
           )
         ],
         backgroundColor: Colors.white,

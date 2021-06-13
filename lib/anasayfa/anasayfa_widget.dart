@@ -174,7 +174,7 @@ class _AnasayfaWidgetState extends State<AnasayfaWidget> {
                             Padding(
                               padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
                               child: Container(
-                                height: 80,
+                                height: 150,
                                 decoration: BoxDecoration(
                                   color: Colors.transparent,
                                   borderRadius: BorderRadius.circular(16),
@@ -192,36 +192,44 @@ class _AnasayfaWidgetState extends State<AnasayfaWidget> {
                                       Padding(
                                         padding:
                                             EdgeInsets.fromLTRB(16, 0, 0, 0),
-                                        child: Stack(
-                                          children: [
-                                            Align(
-                                              alignment: Alignment(-0.1, -0.5),
-                                              child: Text(
-                                                'Mr cihazı hizmete başladı',
-                                                style: FlutterFlowTheme
-                                                    .subtitle2
-                                                    .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: Color(0xFF15212B),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500,
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.55,
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    Alignment(-0.1, -0.5),
+                                                child: Text(
+                                                  'Mr cihazı hizmete başladı',
+                                                  style: FlutterFlowTheme
+                                                      .subtitle2
+                                                      .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Color(0xFF15212B),
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Align(
-                                              alignment: Alignment(2.64, 0.55),
-                                              child: Text(
-                                                'Dec. 19, 1:30pm - 2:00pm',
-                                                style: FlutterFlowTheme
-                                                    .bodyText2
-                                                    .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: Color(0xFF8B97A2),
-                                                  fontWeight: FontWeight.w500,
+                                              Align(
+                                                alignment:
+                                                    Alignment(-0.99, 0.9),
+                                                child: Text(
+                                                  'Dec. 19, 1:30pm - 2:00pm',
+                                                  style: FlutterFlowTheme
+                                                      .bodyText2
+                                                      .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Color(0xFF8B97A2),
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Expanded(
@@ -229,8 +237,8 @@ class _AnasayfaWidgetState extends State<AnasayfaWidget> {
                                         child: Align(
                                           alignment: Alignment(1, 0),
                                           child: Container(
-                                            width: 75,
-                                            height: 75,
+                                            width: 120,
+                                            height: 120,
                                             clipBehavior: Clip.antiAlias,
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
